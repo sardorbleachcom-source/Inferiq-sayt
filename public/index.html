@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inferiq jamoasi | Telegram botlar, AI va veb-saytlar yaratish</title>
+<meta name="description" content="Inferiq jamoasi: Telegram botlar, sun'iy intellekt integratsiyasi va zamonaviy veb-saytlar yaratadi.">
+<meta name="theme-color" content="#05060f">
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#05060f;color:#eef1ff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:-3;overflow:hidden}
+.bg i{position:absolute;width:55vmax;height:55vmax;border-radius:50%;filter:blur(90px);opacity:.45;animation:mv 18s ease-in-out infinite alternate}
+.bg i:nth-child(1){background:#7c3aed;top:-20%;left:-15%}
+.bg i:nth-child(2){background:#06b6d4;bottom:-25%;right:-15%;animation-delay:-6s}
+.bg i:nth-child(3){background:#ec4899;top:30%;left:35%;opacity:.25;animation-delay:-12s}
+@keyframes mv{to{transform:translate(12vw,8vh) scale(1.2)}}
+body::before{content:"";position:fixed;inset:0;z-index:-2;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:radial-gradient(circle at 50% 30%,#000,transparent 75%);mask-image:radial-gradient(circle at 50% 30%,#000,transparent 75%)}
+#c{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+header{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:calc(14px + env(safe-area-inset-top,0px)) 18px 14px;background:rgba(5,6,15,.55);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+.g{background:linear-gradient(90deg,#22d3ee,#a78bfa,#f472b6,#22d3ee);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:sh 6s linear infinite}
+@keyframes sh{to{background-position:200% center}}
+.logo{font-weight:800;font-size:22px}
+nav a{color:#9aa3c7;text-decoration:none;margin-left:14px;font-size:14px}
+section{max-width:960px;margin:0 auto;padding:56px 20px}
+.hero{text-align:center;padding-top:90px;padding-bottom:70px}
+h1{font-size:clamp(36px,9vw,66px);line-height:1.08;margin:0 0 18px}
+h2{font-size:28px;margin:0 0 24px}
+.lead{color:#aab2d5;font-size:18px;max-width:560px;margin:0 auto 28px}
+.btn{display:inline-block;padding:14px 28px;border-radius:14px;text-decoration:none;font-weight:700;color:#fff;background:linear-gradient(90deg,#0891d1,#7c3aed);box-shadow:0 0 30px rgba(124,58,237,.45)}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:20px;backdrop-filter:blur(10px);transition:.3s}
+.card:hover{transform:translateY(-4px);border-color:#22d3ee;box-shadow:0 8px 30px rgba(34,211,238,.18)}
+.card h3{margin:8px 0 6px;font-size:18px}
+.card p{margin:0;color:#9aa3c7;font-size:15px}
+.ic{font-size:30px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center}
+.stats b{display:block;font-size:34px}
+.stats small{color:#9aa3c7}
+.av{width:64px;height:64px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;font-weight:800;font-size:24px;background:linear-gradient(135deg,#22d3ee,#a78bfa)}
+.tc{text-align:center}
+footer{text-align:center;color:#6c759b;font-size:14px;padding:32px 20px calc(32px + env(safe-area-inset-bottom,0px));border-top:1px solid rgba(255,255,255,.08)}
+.r{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.r.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="bg"><i></i><i></i><i></i></div>
+<canvas id="c"></canvas>
+<div id="app"></div>
+<script>
+var $ = function (s) { return document.querySelector(s); };
+function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+
+function sec(id, title, items, fn, cls) {
+  var s = el('section', 'r'); s.id = id;
+  s.append(el('h2', '', title));
+  var g = el('div', 'grid');
+  items.forEach(function (it) { var c = el('div', 'card ' + (cls || '')); fn(c, it); g.append(c); });
+  s.append(g); return s;
+}
+
+function render(d) {
+  var app = $('#app'); app.replaceChildren();
+  document.title = d.brand + ' jamoasi | Telegram botlar, AI va veb-saytlar yaratish';
+
+  var h = el('header');
+  var logo = el('div', 'logo g', d.brand); h.append(logo);
+  var nav = el('nav');
+  [['xizmat', 'Xizmatlar'], ['loyiha', 'Loyihalar'], ['jamoa', 'Jamoa'], ['aloqa', 'Aloqa']].forEach(function (a) {
+    var l = el('a', '', a[1]); l.href = '#' + a[0]; nav.append(l);
+  });
+  h.append(nav); app.append(h);
+
+  var hero = el('section', 'hero r');
+  var h1 = el('h1', 'g', d.title); hero.append(h1);
+  hero.append(el('p', 'lead', d.text));
+  var b = el('a', 'btn', "Bog'lanish"); b.href = '#aloqa'; hero.append(b);
+  app.append(hero);
+
+  var st = el('section', 'stats r');
+  d.stats.forEach(function (x) {
+    var w = el('div'); var n = el('b', 'g', x.n); n.dataset.n = x.n;
+    w.append(n, el('small', '', x.label)); st.append(w);
+  });
+  app.append(st);
+
+  app.append(sec('xizmat', 'Xizmatlar', d.services, function (c, x) {
+    c.append(el('div', 'ic', x.icon), el('h3', '', x.title), el('p', '', x.text));
+  }));
+  app.append(sec('loyiha', 'Loyihalar', d.projects, function (c, x) {
+    c.append(el('h3', '', x.title), el('p', '', x.text));
+  }));
+  app.append(sec('jamoa', 'Jamoa', d.team, function (c, x) {
+    c.append(el('div', 'av', (x.name || '?').charAt(0).toUpperCase()), el('h3', '', x.name), el('p', '', x.role));
+  }, 'tc'));
+
+  var ct = el('section', 'r tc'); ct.id = 'aloqa';
+  ct.append(el('h2', '', 'Aloqa'), el('p', 'lead', d.contact.text));
+  var tg = el('a', 'btn', 'Telegram orqali yozish');
+  tg.href = 'https://t.me/' + encodeURIComponent(d.contact.telegram); tg.target = '_blank'; tg.rel = 'noopener';
+  ct.append(tg, el('p', 'lead', '@' + d.contact.telegram));
+  ct.lastChild.style.marginTop = '16px';
+  app.append(ct);
+
+  app.append(el('footer', '', '© ' + new Date().getFullYear() + ' ' + d.brand + ' jamoasi'));
+  reveal(); counters();
+}
+
+function reveal() {
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .1 });
+  document.querySelectorAll('.r').forEach(function (e) { io.observe(e); });
+}
+
+function counters() {
+  document.querySelectorAll('[data-n]').forEach(function (e) {
+    var to = parseInt(e.dataset.n, 10);
+    if (!/^\d+$/.test(e.dataset.n)) return;
+    var n = 0, step = Math.max(1, Math.round(to / 20));
+    e.textContent = '0';
+    var t = setInterval(function () {
+      n = Math.min(to, n + step); e.textContent = String(n);
+      if (n >= to) clearInterval(t);
+    }, 60);
+  });
+}
+
+fetch('/api/content').then(function (r) { return r.json(); }).then(render)
+  .catch(function () { $('#app').textContent = 'Sayt yuklanmadi, qayta urinib ko\'ring.'; });
+
+// Zarrachalar
+try {
+  var cv = $('#c'), ctx = cv.getContext('2d'), W, H, P = [], m = { x: -999, y: -999 };
+  function size() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
+  size(); addEventListener('resize', size);
+  addEventListener('pointermove', function (e) { m.x = e.clientX; m.y = e.clientY; });
+  addEventListener('pointerup', function () { m.x = m.y = -999; });
+  var N = innerWidth < 600 ? 45 : 80;
+  for (var i = 0; i < N; i++) P.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .6, vy: (Math.random() - .5) * .6 });
+  (function loop() {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#9fe9ff'; ctx.strokeStyle = '#7dd3fc';
+    P.forEach(function (p) {
+      var dx = m.x - p.x, dy = m.y - p.y, d = Math.hypot(dx, dy);
+      if (d < 160) { p.vx += dx / d * .03; p.vy += dy / d * .03; }
+      p.vx *= .995; p.vy *= .995;
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > W) p.vx *= -1;
+      if (p.y < 0 || p.y > H) p.vy *= -1;
+      ctx.globalAlpha = .9; ctx.beginPath(); ctx.arc(p.x, p.y, 1.8, 0, 6.283); ctx.fill();
+    });
+    for (var a = 0; a < P.length; a++) for (var b = a + 1; b < P.length; b++) {
+      var d2 = Math.hypot(P[a].x - P[b].x, P[a].y - P[b].y);
+      if (d2 < 110) { ctx.globalAlpha = (1 - d2 / 110) * .35; ctx.beginPath(); ctx.moveTo(P[a].x, P[a].y); ctx.lineTo(P[b].x, P[b].y); ctx.stroke(); }
+    }
+    requestAnimationFrame(loop);
+  })();
+} catch (e) {}
+</script>
+</body>
+</html>
