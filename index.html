@@ -68,7 +68,7 @@
 <section class="stats">
   <div><b data-n="10">0</b><small>Loyiha</small></div>
   <div><b data-n="5">0</b><small>Bot</small></div>
-  <div><b data-n="24">0</b><small>Soat qo'llab-quvvatlash</small></div>
+  <div><b>24/7</b><small>Qo'llab-quvvatlash</small></div>
 </section>
 
 <section id="xizmat">
@@ -93,10 +93,8 @@
 
 <section id="jamoa" class="team">
   <h2>Jamoa</h2>
-  <div class="grid">
-    <div class="card"><div class="av">S</div><h3>Sardor</h3><p>Bot dasturchi</p></div>
-    <div class="card"><div class="av">I</div><h3>Jamoa a'zosi</h3><p>Ismni o'zingiz yozing</p></div>
-    <div class="card"><div class="av">I</div><h3>Jamoa a'zosi</h3><p>Ismni o'zingiz yozing</p></div>
+  <div class="grid" style="max-width:320px;margin:0 auto">
+    <div class="card"><div class="av">S</div><h3>Sardor</h3><p>Dasturchi (loyiha egasi)</p></div>
   </div>
 </section>
 
@@ -130,19 +128,4 @@ function loop() {
     ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, 6.283); ctx.fill();
   }
   for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) {
-    const d = Math.hypot(P[i].x - P[j].x, P[i].y - P[j].y);
-    if (d < 110) { ctx.globalAlpha = (1 - d / 110) * .5; ctx.beginPath(); ctx.moveTo(P[i].x, P[i].y); ctx.lineTo(P[j].x, P[j].y); ctx.stroke(); }
-  }
-  requestAnimationFrame(loop);
-}
-loop();
-
-// Sanagich
-document.querySelectorAll('[data-n]').forEach(el => {
-  const to = +el.dataset.n; let n = 0;
-  const t = setInterval(() => { n++; el.textContent = n + (to >= 10 ? '+' : ''); if (n >= to) clearInterval(t); }, 90);
-});
-document.getElementById('yr').textContent = new Date().getFullYear();
-</script>
-</body>
-</html>
+    const d = Math.hypot(P[i].x - P[j].x, P[i].y
