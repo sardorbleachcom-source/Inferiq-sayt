@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inferiq jamoasi | Telegram botlar, AI va veb-saytlar yaratish</title>
+<meta name="description" content="Inferiq jamoasi: Telegram botlar, sun'iy intellekt integratsiyasi va zamonaviy veb-saytlar yaratadi. Shadow AI, MegaTools va boshqa loyihalar.">
+<meta name="keywords" content="Inferiq, Telegram bot, bot yaratish, AI bot, veb-sayt, O'zbekiston">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#05060f">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="uz_UZ">
+<meta property="og:title" content="Inferiq jamoasi">
+<meta property="og:description" content="Telegram botlar, AI va zamonaviy veb-saytlar.">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Inferiq jamoasi","description":"Telegram botlar, AI integratsiya va veb-saytlar yaratuvchi jamoa","sameAs":["https://t.me/ESPT4"]}
+</script>
+<style>
+  :root {
+    --bg:#f6f8ff; --card:#ffffff; --text:#0b1020; --muted:#5a6483; --line:#dfe4f5; --a:#0891d1; --b:#7c3aed;
+    box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg:#05060f; --card:#0e1124; --text:#eef1ff; --muted:#9aa3c7; --line:#1f2547; --a:#22d3ee; --b:#a78bfa; }
+  }
+  :root[data-theme="dark"] { --bg:#05060f; --card:#0e1124; --text:#eef1ff; --muted:#9aa3c7; --line:#1f2547; --a:#22d3ee; --b:#a78bfa; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(64px + env(safe-area-inset-top, 0px)); }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height:1.55; }
+  header { position:sticky; top:env(safe-area-inset-top, 0px); z-index:5; display:flex; justify-content:space-between; align-items:center; padding:14px 18px; background:color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
+  .logo { font-weight:800; font-size:20px; background:linear-gradient(90deg,var(--a),var(--b)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  nav a { color:var(--muted); text-decoration:none; margin-left:14px; font-size:14px; }
+  section { max-width:900px; margin:0 auto; padding:56px 20px; }
+  .hero { text-align:center; padding-top:72px; position:relative; }
+  #bg { position:absolute; inset:0; width:100%; height:100%; z-index:-1; opacity:.55; }
+  h1 { font-size:clamp(36px,9vw,64px); line-height:1.08; margin:0 0 16px; }
+  h1 span { background:linear-gradient(90deg,var(--a),var(--b)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .lead { color:var(--muted); font-size:18px; max-width:560px; margin:0 auto 28px; }
+  .btn { display:inline-block; padding:13px 26px; border-radius:14px; text-decoration:none; font-weight:700; color:#fff; background:linear-gradient(90deg,var(--a),var(--b)); }
+  h2 { font-size:28px; margin:0 0 24px; }
+  .grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:18px; padding:20px; }
+  .card h3 { margin:8px 0 6px; font-size:18px; }
+  .card p { margin:0; color:var(--muted); font-size:15px; }
+  .ic { font-size:28px; }
+  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; text-align:center; }
+  .stats b { display:block; font-size:30px; background:linear-gradient(90deg,var(--a),var(--b)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .stats small { color:var(--muted); }
+  .team .card { text-align:center; }
+  .av { width:64px; height:64px; border-radius:50%; margin:0 auto 10px; display:grid; place-items:center; font-weight:800; font-size:22px; color:#fff; background:linear-gradient(135deg,var(--a),var(--b)); }
+  footer { text-align:center; color:var(--muted); font-size:14px; padding:32px 20px calc(32px + env(safe-area-inset-bottom, 0px)); border-top:1px solid var(--line); }
+  footer a { color:var(--a); text-decoration:none; }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">Inferiq</div>
+  <nav><a href="#xizmat">Xizmatlar</a><a href="#loyiha">Loyihalar</a><a href="#jamoa">Jamoa</a><a href="#aloqa">Aloqa</a></nav>
+</header>
+
+<section class="hero">
+  <canvas id="bg"></canvas>
+  <h1>Aqlli botlar va <span>zamonaviy yechimlar</span></h1>
+  <p class="lead">Inferiq jamoasi Telegram botlar, sun'iy intellekt va veb-loyihalarni yaratadi.</p>
+  <a class="btn" href="#aloqa">Bog'lanish</a>
+</section>
+
+<section class="stats">
+  <div><b data-n="10">0</b><small>Loyiha</small></div>
+  <div><b data-n="5">0</b><small>Bot</small></div>
+  <div><b data-n="24">0</b><small>Soat qo'llab-quvvatlash</small></div>
+</section>
+
+<section id="xizmat">
+  <h2>Xizmatlar</h2>
+  <div class="grid">
+    <div class="card"><div class="ic">🤖</div><h3>Telegram botlar</h3><p>Savdo, yuklab olish, narx kuzatuvchi va boshqa har xil botlar.</p></div>
+    <div class="card"><div class="ic">🧠</div><h3>AI integratsiya</h3><p>Ovozli va matnli sun'iy intellekt funksiyalarini botlarga ulash.</p></div>
+    <div class="card"><div class="ic">🌐</div><h3>Veb-saytlar</h3><p>Tez, telefonga mos va chiroyli animatsiyali sahifalar.</p></div>
+    <div class="card"><div class="ic">🚀</div><h3>Joylashtirish</h3><p>Railway va GitHub orqali avtomatik deploy va yangilash.</p></div>
+  </div>
+</section>
+
+<section id="loyiha">
+  <h2>Loyihalar</h2>
+  <div class="grid">
+    <div class="card"><h3>Shadow AI</h3><p>Ovozli funksiyali sun'iy intellekt Telegram boti.</p></div>
+    <div class="card"><h3>MegaTools</h3><p>Ko'p funksiyali Telegram yordamchi bot.</p></div>
+    <div class="card"><h3>Crypto Price</h3><p>Kriptovalyuta narxlarini tez tekshiruvchi bot.</p></div>
+    <div class="card"><h3>Track Downloader</h3><p>Musiqa topish va yuklab olish boti.</p></div>
+  </div>
+</section>
+
+<section id="jamoa" class="team">
+  <h2>Jamoa</h2>
+  <div class="grid">
+    <div class="card"><div class="av">S</div><h3>Sardor</h3><p>Bot dasturchi</p></div>
+    <div class="card"><div class="av">I</div><h3>Jamoa a'zosi</h3><p>Ismni o'zingiz yozing</p></div>
+    <div class="card"><div class="av">I</div><h3>Jamoa a'zosi</h3><p>Ismni o'zingiz yozing</p></div>
+  </div>
+</section>
+
+<section id="aloqa" style="text-align:center">
+  <h2>Aloqa</h2>
+  <p class="lead">Loyiha g'oyangiz bormi? Yozing, birga amalga oshiramiz.</p>
+  <a class="btn" href="https://t.me/ESPT4" target="_blank" rel="noopener">Telegram orqali yozish</a>
+  <p class="lead" style="margin-top:16px">Telegram: @ESPT4</p>
+</section>
+
+<footer>© <span id="yr"></span> Inferiq jamoasi</footer>
+
+<script>
+// Fon zarrachalari
+const cv = document.getElementById('bg'), ctx = cv.getContext('2d');
+let W, H, P = [];
+function size() {
+  const r = cv.parentElement.getBoundingClientRect();
+  W = cv.width = r.width; H = cv.height = r.height;
+}
+size(); addEventListener('resize', size);
+for (let i = 0; i < 50; i++) P.push({ x: Math.random() * 900, y: Math.random() * 600, vx: (Math.random() - .5) * .5, vy: (Math.random() - .5) * .5 });
+function loop() {
+  ctx.clearRect(0, 0, W, H);
+  const col = getComputedStyle(document.documentElement).getPropertyValue('--a').trim() || '#22d3ee';
+  ctx.fillStyle = col; ctx.strokeStyle = col;
+  for (const p of P) {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0 || p.x > W) p.vx *= -1;
+    if (p.y < 0 || p.y > H) p.vy *= -1;
+    ctx.globalAlpha = 1; ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, 6.283); ctx.fill();
+  }
+  for (let i = 0; i < P.length; i++) for (let j = i + 1; j < P.length; j++) {
+    const d = Math.hypot(P[i].x - P[j].x, P[i].y - P[j].y);
+    if (d < 110) { ctx.globalAlpha = (1 - d / 110) * .5; ctx.beginPath(); ctx.moveTo(P[i].x, P[i].y); ctx.lineTo(P[j].x, P[j].y); ctx.stroke(); }
+  }
+  requestAnimationFrame(loop);
+}
+loop();
+
+// Sanagich
+document.querySelectorAll('[data-n]').forEach(el => {
+  const to = +el.dataset.n; let n = 0;
+  const t = setInterval(() => { n++; el.textContent = n + (to >= 10 ? '+' : ''); if (n >= to) clearInterval(t); }, 90);
+});
+document.getElementById('yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
