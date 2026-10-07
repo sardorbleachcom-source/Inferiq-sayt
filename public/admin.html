@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Admin panel</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b0e1f;color:#eef1ff;font-family:system-ui,sans-serif;padding:16px 16px 90px}
+h1{font-size:22px;margin:0 0 14px}
+label{display:block;color:#7dd3fc;font-size:13px;margin:12px 0 4px;text-transform:uppercase;letter-spacing:.04em}
+input,textarea{width:100%;padding:11px;border-radius:10px;border:1px solid #2a3158;background:#141935;color:#fff;font:inherit}
+textarea{min-height:70px}
+.item{border:1px solid #2a3158;border-radius:12px;padding:10px;margin:8px 0;background:#10142b}
+.b .b{margin-left:0}
+button{font:inherit;border:0;border-radius:10px;padding:10px 14px;margin-top:8px;color:#fff;background:#334}
+.add{background:#0e7490}
+.del{background:#7f1d1d}
+#save{position:fixed;left:16px;right:16px;bottom:16px;padding:15px;font-weight:700;background:linear-gradient(90deg,#0891d1,#7c3aed)}
+#msg{text-align:center;margin-top:10px;color:#86efac}
+</style>
+</head>
+<body>
+<div id="login">
+  <h1>Admin kirish</h1>
+  <input id="pw" type="password" placeholder="Parol">
+  <button id="go" style="width:100%;background:#7c3aed">Kirish</button>
+  <div id="msg"></div>
+</div>
+<div id="panel" style="display:none">
+  <h1>Saytni tahrirlash</h1>
+  <div id="root"></div>
+  <button id="save">Saqlash</button>
+  <div id="msg2" style="text-align:center;margin-top:10px;color:#86efac"></div>
+</div>
+<script>
+var $ = function (s) { return document.querySelector(s); };
+function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
+var pass = sessionStorage.getItem('ap') || '', data = null;
+
+function api(method, body) {
+  return fetch('/api/content', { method: method, headers: { 'x-admin': pass, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+}
+function blank(x) {
+  if (typeof x === 'object' && x) { var o = {}; Object.keys(x).forEach(function (k) { o[k] = blank(x[k]); }); return o; }
+  return '';
+}
+function inp(o, k) {
+  var long = String(o[k]).length > 40;
+  var i = el(long ? 'textarea' : 'input'); i.value = o[k];
+  i.oninput = function () { o[k] = i.value; };
+  return i;
+}
+function ed(o) {
+  var box = el('div', 'b');
+  Object.keys(o).forEach(function (k) {
+    var v = o[k];
+    box.append(el('label', '', k));
+    if (Array.isArray(v)) {
+      v.forEach(function (it, i) {
+        var c = el('div', 'item');
+        if (typeof it === 'object') c.append(ed(it)); else c.append(inp(v, i));
+        var x = el('button', 'del', "O'chirish");
+        x.onclick = function () { v.splice(i, 1); draw(); };
+        c.append(x); box.append(c);
+      });
+      var a = el('button', 'add', "+ Qo'shish");
+      a.onclick = function () { v.push(v.length ? blank(v[v.length - 1]) : ''); draw(); };
+      box.append(a);
+    } else if (typeof v === 'object' && v) box.append(ed(v));
+    else box.append(inp(o, k));
+  });
+  return box;
+}
+function draw() { $('#root').replaceChildren(ed(data)); }
+
+function open() {
+  fetch('/api/auth', { headers: { 'x-admin': pass } }).then(function (r) {
+    if (!r.ok) throw 0;
+    sessionStorage.setItem('ap', pass);
+    return api('GET').then(function (r2) { return r2.json(); });
+  }).then(function (d) {
+    data = d; $('#login').style.display = 'none'; $('#panel').style.display = 'block'; draw();
+  }).catch(function () { $('#msg').style.color = '#fca5a5'; $('#msg').textContent = "Parol noto'g'ri"; });
+}
+$('#go').onclick = function () { pass = $('#pw').value; open(); };
+$('#save').onclick = function () {
+  $('#msg2').textContent = 'Saqlanmoqda...';
+  api('POST', data).then(function (r) { $('#msg2').textContent = r.ok ? 'Saqlandi ✓' : 'Xato: saqlanmadi'; })
+    .catch(function () { $('#msg2').textContent = 'Xato: tarmoq'; });
+};
+if (pass) open();
+</script>
+</body>
+</html>
